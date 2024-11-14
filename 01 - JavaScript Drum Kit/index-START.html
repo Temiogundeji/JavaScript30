@@ -56,22 +56,25 @@
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
     <script>
-      const keys = document.querySelectorAll(".key");
-      //loop through the keys
-      for (let i = 0; i < keys.length; i++) {
-        // console.log(keys[i].dataset.key);
-        //Whenever a key is pressed, play the corresponding sound
-        keys[i].addEventListener("click", (e) => {
-          // console.log(keys[i]);
-          let currentAudio = document.querySelector(
-            `audio[data-key="${keys[i].dataset.key}"]`
-          );
-          //Play audio
-          currentAudio.currentTime = 0;
-          currentAudio.play();
-          console.log(currentAudio, "currentAudio");
-        });
+      let allKeys = Array.from(document.querySelectorAll(`.key`));
+      function removeTransition(e) {
+        if (!e.target.classList.contains("playing")) return;
+        e.target.classList.remove("playing");
       }
+      document.addEventListener("keydown", (e) => {
+        let currentKey = document.querySelector(`div[data-key="${e.keyCode}"]`);
+        let currentAudio = document.querySelector(
+          `audio[data-key="${e.keyCode}"]`
+        );
+        if (!currentAudio) return;
+        currentAudio.currentTime = 0;
+        currentKey.classList.add("playing");
+        currentAudio.play();
+      });
+
+      allKeys.forEach((key) => {
+        key.addEventListener("transitionend", removeTransition);
+      });
     </script>
     <style>
       /* Define the flash animation */
