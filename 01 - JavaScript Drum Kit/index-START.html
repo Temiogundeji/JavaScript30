@@ -75,6 +75,34 @@
       allKeys.forEach((key) => {
         key.addEventListener("transitionend", removeTransition);
       });
+
+      //remove animation from the current buttion
+      // function removeTransition(e) {
+      //   if (e.propertyName !== "transform") return;
+      //   e.target.classList.remove("playing");
+      // }
+
+      // const keys = Array.from(document.querySelectorAll(".key"));
+
+      // function playAudio(e) {
+      //   let currentAudio = document.querySelector(
+      //     `audio[data-key="${e.keyCode}"]`
+      //   );
+      //   let currentKey = document.querySelector(`div[data-key="${e.keyCode}"]`);
+
+      //   currentKey.classList.add("playing");
+      //   if (!currentAudio) return;
+      //   currentAudio.currentTime = 0;
+      //   currentAudio.play();
+      // }
+
+      // document.addEventListener("keydown", (e) => {
+      //   playAudio(e);
+      // });
+
+      // keys.forEach((key) => {
+      //   key.addEventListener("transitionend", removeTransition);
+      // });
     </script>
     <style>
       /* Define the flash animation */
